@@ -3,12 +3,15 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
+const RESUME_LINK = "https://drive.google.com/file/d/1tB3srkwsHWvaQfp2DnECAwMJjBLg2jAq/view?usp=drive_link";
+
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Journey", href: "#experience" },
+  { name: "Resume", href: RESUME_LINK, external: true },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -66,21 +69,32 @@ export default function Navbar() {
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.name}>
-              <button
-                onClick={() => scrollTo(link.href)}
-                className={`text-sm font-medium relative group transition-colors ${
-                  activeSection === link.href
-                    ? "text-white"
-                    : "text-gray-400 hover:text-white"
-                }`}
-              >
-                {link.name}
-                <span
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all ${
-                    activeSection === link.href ? "w-full" : "w-0 group-hover:w-full"
+              {link.external ? (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <button
+                  onClick={() => scrollTo(link.href)}
+                  className={`text-sm font-medium relative group transition-colors ${
+                    activeSection === link.href
+                      ? "text-white"
+                      : "text-gray-400 hover:text-white"
                   }`}
-                />
-              </button>
+                >
+                  {link.name}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all ${
+                      activeSection === link.href ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </button>
+              )}
             </li>
           ))}
         </ul>
@@ -112,16 +126,27 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <button
-                    onClick={() => scrollTo(link.href)}
-                    className={`text-base font-medium transition-colors ${
-                      activeSection === link.href
-                        ? "text-purple-400"
-                        : "text-gray-300 hover:text-white"
-                    }`}
-                  >
-                    {link.name}
-                  </button>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-base font-medium text-gray-300 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => scrollTo(link.href)}
+                      className={`text-base font-medium transition-colors ${
+                        activeSection === link.href
+                          ? "text-purple-400"
+                          : "text-gray-300 hover:text-white"
+                      }`}
+                    >
+                      {link.name}
+                    </button>
+                  )}
                 </motion.li>
               ))}
             </ul>

@@ -2,7 +2,11 @@
 import { motion } from "framer-motion";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown, Sparkles, FileText } from "lucide-react";
+import Photo from "./Photo";
+
+// Google Drive link for your CV/Resume — replace with your actual link
+const RESUME_LINK = "https://drive.google.com/file/d/1tB3srkwsHWvaQfp2DnECAwMJjBLg2jAq/view?usp=drive_link";
 
 const roles = [
   "Python Developer",
@@ -182,6 +186,14 @@ export default function Hero() {
           and modern web technologies. Currently exploring machine learning, NLP, and full-stack development. 🚀
         </motion.p>
 
+        {/* Add your profile photo here */}
+        <Photo 
+          src="/images/profile.jpg" 
+          alt="Ankit Yadav" 
+          size="md"
+          showGlow={true}
+        />
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -214,6 +226,17 @@ export default function Hero() {
             className="px-8 py-3.5 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-semibold rounded-full transition-all duration-300"
           >
             🚀 View My Projects
+          </motion.a>
+          <motion.a
+            href={RESUME_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(6,182,212,0.3)" }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-full transition-all duration-300 flex items-center gap-2"
+          >
+            <FileText size={18} />
+            Resume
           </motion.a>
           <motion.a
             href="#contact"

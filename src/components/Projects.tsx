@@ -279,17 +279,15 @@ export default function Projects() {
               <>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {displayedRepos.map((repo, index) => (
-                    <motion.a
+                    <motion.div
                       key={repo.id}
-                      href={repo.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       initial={{ opacity: 0, y: 40 }}
                       animate={isInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.5, delay: 0.1 + index * 0.06 }}
                       whileHover={{ y: -8, transition: { duration: 0.3 } }}
                       onHoverStart={() => setHoveredProject(index)}
                       onHoverEnd={() => setHoveredProject(null)}
+                      onClick={() => window.open(repo.html_url, '_blank')}
                       className="group relative rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-purple-500/30 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 cursor-pointer"
                     >
                       {/* Gradient top bar */}
@@ -376,21 +374,19 @@ export default function Projects() {
                             <Github size={14} /> View Repo
                           </span>
                           {repo.homepage && (
-                            <motion.a
+                            <a
                               href={repo.homepage}
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-purple-300 bg-purple-500/10 rounded-lg hover:bg-purple-500/20 transition-all"
+                              className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-purple-300 bg-purple-500/10 rounded-lg hover:bg-purple-500/20 transition-all hover:scale-105 active:scale-95"
                             >
                               <Eye size={14} /> Live Demo
-                            </motion.a>
+                            </a>
                           )}
                         </div>
                       </div>
-                    </motion.a>
+                    </motion.div>
                   ))}
                 </div>
 
