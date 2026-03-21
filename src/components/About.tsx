@@ -6,21 +6,18 @@ import { Code2, Palette, Rocket, GraduationCap, BookOpen, Trophy } from "lucide-
 const highlights = [
   {
     icon: <Code2 size={28} />,
-    title: "Builder",
-    description: "Love turning ideas into real products. From AI chatbots to booking systems and ML pipelines — I ship things.",
-    emoji: "🛠️",
+    title: "Software Development",
+    description: "Experienced in building end-to-end applications — from AI-powered chatbots and booking systems to ML pipelines and production web apps.",
   },
   {
     icon: <Palette size={28} />,
-    title: "AI/ML Explorer",
-    description: "Passionate about machine learning, NLP, and RAG systems. Built GPT-2 fine-tuning, MLflow pipelines, and AI-powered apps.",
-    emoji: "🤖",
+    title: "AI & Machine Learning",
+    description: "Focused on machine learning, NLP, and RAG systems. Developed GPT-2 fine-tuning workflows, MLflow pipelines, and intelligent applications.",
   },
   {
     icon: <Rocket size={28} />,
-    title: "Fast Learner",
-    description: "Picked up Python, FastAPI, Django, and ML frameworks through self-learning and building real-world projects.",
-    emoji: "⚡",
+    title: "Continuous Learning",
+    description: "Self-taught Python, FastAPI, Django, and modern ML frameworks through hands-on project development and continuous experimentation.",
   },
 ];
 
@@ -47,17 +44,16 @@ export default function About() {
         >
           <span className="text-sm font-medium text-purple-400 uppercase tracking-widest">About Me</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6">
-            A student who{" "}
+            Driven by{" "}
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              loves to build
+              curiosity & code
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          I’m a Computer Science student passionate about AI, Machine Learning, 
-          and modern web technologies. I enjoy building projects that combine data, algorithms, 
-          and user-friendly interfaces. Through hands-on development and continuous learning, 
-          I aim to create innovative solutions and grow as a developer. For me, every project is 
-          an opportunity to learn, experiment, and improve. 🚀
+          I am a Computer Science undergraduate with a strong focus on AI, Machine Learning,
+          and modern web technologies. I specialize in building projects that integrate data, algorithms,
+          and intuitive interfaces. Through continuous hands-on development,
+          I strive to deliver innovative solutions and grow as a professional developer.
           </p>
         </motion.div>
 
@@ -109,13 +105,6 @@ export default function About() {
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-cyan-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-300">
                     {item.icon}
                   </div>
-                  <motion.span
-                    className="text-3xl"
-                    animate={hoveredCard === index ? { rotate: [0, -10, 10, -10, 0], scale: [1, 1.2, 1] } : {}}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {item.emoji}
-                  </motion.span>
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-purple-300 transition-colors">{item.title}</h3>
                 <p className="text-gray-400 leading-relaxed">{item.description}</p>

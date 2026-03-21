@@ -69,14 +69,13 @@ export default function Contact() {
             Contact
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6">
-            Let&apos;s{" "}
+            Get in{" "}
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              connect
-            </span>{" "}
-            💬
+              touch
+            </span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto text-lg">
-            Open to internships, collaborations, freelance work, or just a friendly chat about tech!
+            Open to internships, collaborations, freelance opportunities, or professional discussions about technology.
           </p>
         </motion.div>
 
@@ -92,10 +91,10 @@ export default function Contact() {
             <div className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800">
               <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
                 <Coffee size={18} className="text-purple-400" />
-                Let&apos;s grab a virtual coffee!
+                Let&apos;s Connect
               </h3>
               <p className="text-sm text-gray-500 mb-6">
-                I&apos;m always excited to meet new people, discuss ideas, or explore opportunities.
+                I am always open to meeting new people, discussing ideas, and exploring professional opportunities.
               </p>
 
               <div className="space-y-4">
@@ -215,7 +214,7 @@ export default function Contact() {
                   onBlur={() => setFocusedField(null)}
                   animate={{ borderColor: focusedField === "message" ? "rgba(168,85,247,0.5)" : "rgba(55,65,81,1)" }}
                   className="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-purple-500/25 transition-all resize-none"
-                  placeholder="Hey Ankit! I'd love to chat about..."
+                  placeholder="I would like to discuss..."
                 />
               </div>
               <motion.button

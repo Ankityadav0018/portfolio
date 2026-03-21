@@ -55,7 +55,17 @@ const gradients = [
   "from-indigo-500/20 to-purple-500/20",
 ];
 
-const repoEmojis = ["🚀", "⚡", "🔥", "💡", "🎯", "✨", "🛠️", "🌟", "💻", "🎨", "📦", "🤖"];
+const repoEmojis: string[] = [];
+
+// Custom project images for top repos
+const projectImages: Record<string, string> = {
+  "portfolio": "/images/projects/portfolio.png",
+  "Campus-Management-System": "/images/projects/campus-management.png",
+  "Booking-system": "/images/projects/booking-system.png",
+  "FastApi": "/images/projects/fastapi.png",
+  "whatsapp-bot-n8n": "/images/projects/whatsapp-bot.png",
+  "mlflow": "/images/projects/mlflow.png",
+};
 
 function getTimeAgo(dateStr: string) {
   const diff = Date.now() - new Date(dateStr).getTime();
@@ -230,14 +240,13 @@ export default function Projects() {
             Projects
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6">
-            My{" "}
+            Featured{" "}
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              GitHub repos
-            </span>{" "}
-            🚀
+              GitHub repositories
+            </span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto text-lg">
-            Live from GitHub — these are the projects I&apos;ve been building and shipping.
+            Sourced live from GitHub — a selection of projects I have developed and deployed.
           </p>
         </motion.div>
 
@@ -290,8 +299,27 @@ export default function Projects() {
                       onClick={() => window.open(repo.html_url, '_blank')}
                       className="group relative rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-purple-500/30 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 cursor-pointer"
                     >
-                      {/* Gradient top bar */}
-                      <div className={`h-1 w-full bg-gradient-to-r ${gradients[index % gradients.length]}`} />
+                      {/* Project Thumbnail */}
+                      <div className={`relative w-full h-44 overflow-hidden bg-gradient-to-br ${gradients[index % gradients.length]}`}>
+                        {/* Fallback content (visible only when image fails) */}
+                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+                          <Github size={32} className="text-gray-500/60" />
+                          {repo.language && (
+                            <span className="text-xs font-medium text-gray-400/60 uppercase tracking-wider">{repo.language}</span>
+                          )}
+                        </div>
+                        <img
+                          src={projectImages[repo.name] || `https://socialify.git.ci/${GITHUB_USERNAME}/${repo.name}/image?language=1&name=1&owner=1&theme=Dark&font=Inter`}
+                          alt={repo.name}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 z-10"
+                          loading="lazy"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = "none";
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent z-20" />
+                      </div>
 
                       {/* Hover glow */}
                       <motion.div
@@ -305,13 +333,15 @@ export default function Projects() {
                         {/* Header */}
                         <div className="flex items-start justify-between mb-3">
                           <div className="flex items-center gap-3 min-w-0">
-                            <motion.span
-                              className="text-2xl shrink-0"
-                              animate={hoveredProject === index ? { scale: [1, 1.3, 1], rotate: [0, 10, -10, 0] } : {}}
-                              transition={{ duration: 0.5 }}
-                            >
-                              {repoEmojis[index % repoEmojis.length]}
-                            </motion.span>
+                            {repoEmojis.length > 0 && (
+                              <motion.span
+                                className="text-2xl shrink-0"
+                                animate={hoveredProject === index ? { scale: [1, 1.3, 1], rotate: [0, 10, -10, 0] } : {}}
+                                transition={{ duration: 0.5 }}
+                              >
+                                {repoEmojis[index % repoEmojis.length]}
+                              </motion.span>
+                            )}
                             <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors truncate">
                               {repo.name}
                             </h3>

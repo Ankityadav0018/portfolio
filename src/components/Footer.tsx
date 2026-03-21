@@ -34,14 +34,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-gray-500 text-sm flex items-center gap-1">
-            Built with{" "}
-            <motion.span
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-            >
-              <Heart size={14} className="text-red-400 fill-red-400" />
-            </motion.span>{" "}
-            & lots of ☕ by Ankit Yadav &copy; {new Date().getFullYear()}
+            Designed & developed by Ankit Yadav &copy; {new Date().getFullYear()}
           </p>
 
           {/* Social Links */}

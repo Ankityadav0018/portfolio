@@ -16,7 +16,7 @@ const roles = [
   "Problem Solver",
 ];
 
-const floatingIcons = ["⚛️", "🚀", "💡", "🎯", "✨", "🔥", "💻", "🌟"];
+const floatingIcons: string[] = [];
 
 function useTypewriter(words: string[], speed = 100, pause = 2000) {
   const [text, setText] = useState("");
@@ -48,7 +48,7 @@ function useTypewriter(words: string[], speed = 100, pause = 2000) {
   return text;
 }
 
-export default function Hero() {
+export default function Hero({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const typedText = useTypewriter(roles, 80, 1800);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [githubStats, setGithubStats] = useState({
@@ -144,7 +144,7 @@ export default function Hero() {
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium text-purple-300 bg-purple-500/10 border border-purple-500/20 rounded-full">
             <Sparkles size={14} className="animate-spin" style={{ animationDuration: "3s" }} />
-            3rd Year LPU Student &bull; Aspiring Developer
+            Computer Science Undergraduate &bull; Developer
           </span>
         </motion.div>
 
@@ -180,8 +180,8 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-base md:text-lg text-gray-500 mb-10 max-w-2xl mx-auto"
         >
-          A passionate learner building real-world projects with Python, AI/ML,
-          and modern web technologies. Currently exploring machine learning, NLP, and full-stack development. 🚀
+          Building production-grade applications with Python, AI/ML,
+          and modern web technologies. Focused on machine learning, NLP, and full-stack development.
         </motion.p>
 
         {/* Add your profile photo here */}
@@ -213,18 +213,14 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
-          <motion.a
-            href="#projects"
+          <motion.button
             whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(168,85,247,0.3)" }}
             whileTap={{ scale: 0.95 }}
-            onClick={(e) => {
-              e.preventDefault();
-              document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
-            }}
+            onClick={() => onNavigate?.("projects")}
             className="px-8 py-3.5 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-semibold rounded-full transition-all duration-300"
           >
-            🚀 View My Projects
-          </motion.a>
+            View My Projects
+          </motion.button>
           <motion.a
             href={RESUME_LINK}
             target="_blank"
@@ -236,18 +232,14 @@ export default function Hero() {
             <FileText size={18} />
             Resume
           </motion.a>
-          <motion.a
-            href="#contact"
+          <motion.button
             whileHover={{ scale: 1.05, borderColor: "rgba(168,85,247,0.5)" }}
             whileTap={{ scale: 0.95 }}
-            onClick={(e) => {
-              e.preventDefault();
-              document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-            }}
+            onClick={() => onNavigate?.("contact")}
             className="px-8 py-3.5 border border-gray-700 text-gray-300 font-semibold rounded-full transition-all duration-300 flex items-center gap-2"
           >
-            💬 Let&apos;s Talk
-          </motion.a>
+            Get In Touch
+          </motion.button>
         </motion.div>
 
         <motion.div
@@ -276,21 +268,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="flex flex-col items-center gap-2"
-        >
-          <span className="text-xs text-gray-600 tracking-widest uppercase">Scroll</span>
-          <ArrowDown className="text-gray-500" size={20} />
-        </motion.div>
-      </motion.div>
+
     </section>
   );
 }

@@ -29,7 +29,7 @@ const journey = [
     place: "LPU",
     period: "2023 – 2024",
     description:
-      "Started my coding journey with HTML, CSS, and JavaScript. Built my first websites, discovered Python, and fell in love with programming. The spark that started it all! ⚡",
+      "Started coding with HTML, CSS, and JavaScript. Built initial web projects, discovered Python, and developed a deep interest in programming and software development.",
     tags: ["HTML/CSS", "JavaScript", "Python", "Git"],
     icon: <Star size={18} />,
     highlight: false,
@@ -37,12 +37,12 @@ const journey = [
 ];
 
 const achievements = [
-  { emoji: "🚀", title: "15+ Projects", detail: "Built & shipped on GitHub" },
-  { emoji: "🤖", title: "AI/ML Projects", detail: "RAG, GPT-2, MLflow pipelines" },
-  { emoji: "🐍", title: "Python Focused", detail: "Primary language across repos" },
-  { emoji: "🌐", title: "Full Stack Apps", detail: "Django, FastAPI, Node.js" },
-  { emoji: "📜", title: "Certifications", detail: "Java, DSA" },
-  { emoji: "🎯", title: "Problem Solver", detail: "DSA & algorithmic thinking" },
+  { emoji: "", title: "15+ Projects", detail: "Built & deployed on GitHub" },
+  { emoji: "", title: "AI/ML Projects", detail: "RAG, GPT-2, MLflow pipelines" },
+  { emoji: "", title: "Python Focused", detail: "Primary language across repositories" },
+  { emoji: "", title: "Full Stack Applications", detail: "Django, FastAPI, Node.js" },
+  { emoji: "", title: "Certifications", detail: "Java, Data Structures & Algorithms" },
+  { emoji: "", title: "Problem Solving", detail: "DSA & algorithmic thinking" },
 ];
 
 export default function Experience() {
@@ -69,11 +69,10 @@ export default function Experience() {
             My{" "}
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
               learning path
-            </span>{" "}
-            🎓
+            </span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto text-lg">
-            No job experience yet — but a journey full of building, learning, and growing every single day.
+            A timeline of my academic journey and the skills I have developed along the way.
           </p>
         </motion.div>
 
@@ -180,10 +179,10 @@ export default function Experience() {
                 <div className="relative z-10">
                   <motion.span
                     className="text-3xl block mb-2"
-                    animate={hoveredAchievement === index ? { scale: [1, 1.4, 1], rotate: [0, -15, 15, 0] } : {}}
+                    animate={hoveredAchievement === index ? { scale: [1, 1.4, 1] } : {}}
                     transition={{ duration: 0.5 }}
                   >
-                    {item.emoji}
+                    {item.emoji || <Star size={24} className="text-purple-400 mx-auto" />}
                   </motion.span>
                   <h4 className="text-sm font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors">{item.title}</h4>
                   <p className="text-xs text-gray-500">{item.detail}</p>

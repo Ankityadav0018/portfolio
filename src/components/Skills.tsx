@@ -168,32 +168,22 @@ function SkillCard({ skill, delay, isInView }: { skill: typeof skillCategories[0
           {skill.name}
         </motion.span>
 
-        {/* Proficiency Level - Shows on Hover */}
-        <motion.div
-          className="w-full mt-2"
-          initial={{ opacity: 0, y: 10 }}
-          animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-          transition={{ duration: 0.3 }}
-        >
+        {/* Proficiency Level - Always Visible */}
+        <div className="w-full mt-2">
           {/* Progress Bar */}
           <div className="w-full h-2 bg-gray-700/50 rounded-full overflow-hidden mb-2">
             <motion.div
               className="h-full bg-gradient-to-r from-purple-500 to-cyan-500"
               initial={{ width: 0 }}
-              animate={isHovered ? { width: `${skill.level}%` } : { width: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: delay + 0.2 }}
             />
           </div>
           {/* Percentage Text */}
-          <motion.p
-            className="text-center text-xs font-semibold text-purple-400"
-            initial={{ opacity: 0 }}
-            animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-          >
-            Proficiency: {skill.level}%
-          </motion.p>
-        </motion.div>
+          <p className="text-center text-xs font-semibold text-purple-400">
+            {skill.level}%
+          </p>
+        </div>
       </div>
     </motion.div>
   );
@@ -219,14 +209,13 @@ export default function Skills() {
             Skills
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6">
-            My{" "}
+            Technical{" "}
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              tech toolkit
-            </span>{" "}
-            🧰
+              proficiencies
+            </span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto text-lg">
-            Hover over each skill to see my proficiency level. Always learning, always growing!
+            A comprehensive overview of my technical skills and proficiency levels.
           </p>
         </motion.div>
 
