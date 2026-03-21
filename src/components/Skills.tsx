@@ -167,6 +167,33 @@ function SkillCard({ skill, delay, isInView }: { skill: typeof skillCategories[0
         >
           {skill.name}
         </motion.span>
+
+        {/* Proficiency Level - Shows on Hover */}
+        <motion.div
+          className="w-full mt-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.3 }}
+        >
+          {/* Progress Bar */}
+          <div className="w-full h-2 bg-gray-700/50 rounded-full overflow-hidden mb-2">
+            <motion.div
+              className="h-full bg-gradient-to-r from-purple-500 to-cyan-500"
+              initial={{ width: 0 }}
+              animate={isHovered ? { width: `${skill.level}%` } : { width: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            />
+          </div>
+          {/* Percentage Text */}
+          <motion.p
+            className="text-center text-xs font-semibold text-purple-400"
+            initial={{ opacity: 0 }}
+            animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+          >
+            Proficiency: {skill.level}%
+          </motion.p>
+        </motion.div>
       </div>
     </motion.div>
   );

@@ -1,47 +1,41 @@
 "use client";
-import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const RESUME_LINK = "https://drive.google.com/file/d/1tB3srkwsHWvaQfp2DnECAwMJjBLg2jAq/view?usp=drive_link";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Journey", href: "#experience" },
+  { name: "Home", id: "home" },
+  { name: "About", id: "about" },
+  { name: "Skills", id: "skills" },
+  { name: "Projects", id: "projects" },
+  { name: "Journey", id: "journey" },
+  { name: "Contact", id: "contact" },
   { name: "Resume", href: RESUME_LINK, external: true },
-  { name: "Contact", href: "#contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ 
+  activePage, 
+  setActivePage 
+}: { 
+  activePage: string; 
+  setActivePage: (page: string) => void;
+}) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("#home");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 50);
+  };
 
-      // Track active section
-      const sections = navLinks.map((l) => l.href.slice(1));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.getBoundingClientRect().top <= 150) {
-          setActiveSection(`#${sections[i]}`);
-          break;
-        }
-      }
-    };
+  if (typeof window !== "undefined") {
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }
 
-  const scrollTo = (href: string) => {
+  const handleNavClick = (id: string) => {
+    setActivePage(id);
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -57,7 +51,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <motion.button
-          onClick={() => scrollTo("#home")}
+          onClick={() => handleNavClick("home")}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
@@ -80,9 +74,9 @@ export default function Navbar() {
                 </a>
               ) : (
                 <button
-                  onClick={() => scrollTo(link.href)}
+                  onClick={() => handleNavClick(link.id!)}
                   className={`text-sm font-medium relative group transition-colors ${
-                    activeSection === link.href
+                    activePage === link.id
                       ? "text-white"
                       : "text-gray-400 hover:text-white"
                   }`}
@@ -90,7 +84,7 @@ export default function Navbar() {
                   {link.name}
                   <span
                     className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all ${
-                      activeSection === link.href ? "w-full" : "w-0 group-hover:w-full"
+                      activePage === link.id ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   />
                 </button>
@@ -137,9 +131,9 @@ export default function Navbar() {
                     </a>
                   ) : (
                     <button
-                      onClick={() => scrollTo(link.href)}
+                      onClick={() => handleNavClick(link.id!)}
                       className={`text-base font-medium transition-colors ${
-                        activeSection === link.href
+                        activePage === link.id
                           ? "text-purple-400"
                           : "text-gray-300 hover:text-white"
                       }`}
