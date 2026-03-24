@@ -11,6 +11,7 @@ const navLinks = [
   { name: "Skills", id: "skills" },
   { name: "Projects", id: "projects" },
   { name: "Journey", id: "journey" },
+  { name: "Certificates", id: "certificates" },
   { name: "Contact", id: "contact" },
   { name: "Resume", href: RESUME_LINK, external: true },
 ];

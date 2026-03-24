@@ -6,6 +6,7 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
+import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,6 +17,7 @@ const pages = [
   { id: "skills", name: "Skills", component: Skills },
   { id: "projects", name: "Projects", component: Projects },
   { id: "journey", name: "Journey", component: Experience },
+  { id: "certificates", name: "Certificates", component: Certificates },
   { id: "contact", name: "Contact", component: Contact },
 ];
 
