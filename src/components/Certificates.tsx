@@ -21,7 +21,7 @@ const certificates: Certificate[] = [
     date: "2025",
     link: "/certificates/privacy-and-security.pdf",
     image: "/images/certificates/privacy-and-security.png",
-    skills: ["Privacy", "Security", "Social Media"],
+    skills: ["Privacy and Security", "Social Media"],
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const certificates: Certificate[] = [
     date: "2025",
     link: "/certificates/cse205-neocolab.pdf",
     image: "/images/certificates/cse205-neocolab.png",
-    skills: ["Computer Science", "CSE205"],
+    skills: ["Data structure and algorith"],
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const certificates: Certificate[] = [
     date: "2025",
     link: "/certificates/cert-1.pdf",
     image: "/images/certificates/cert-1.png",
-    skills: ["Technical Assessment", "Merit"],
+    skills: ["Technical Assessment"],
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const certificates: Certificate[] = [
     date: "2025",
     link: "/certificates/cert-2.pdf",
     image: "/images/certificates/cert-2.png",
-    skills: ["Technical Assessment", "Merit"],
+    skills: ["Technical Assessment"],
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const certificates: Certificate[] = [
     date: "2025",
     link: "/certificates/cert-3.pdf",
     image: "/images/certificates/cert-3.png",
-    skills: ["Technical Assessment", "Merit"],
+    skills: ["Technical Assessment"],
   },
   {
     id: 6,
@@ -66,7 +66,7 @@ const certificates: Certificate[] = [
     date: "2025",
     link: "/certificates/cert-4.pdf",
     image: "/images/certificates/cert-4.png",
-    skills: ["Technical Assessment", "Merit"],
+    skills: ["Technical Assessment"],
   }
 ];
 
