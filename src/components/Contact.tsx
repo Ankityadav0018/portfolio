@@ -1,7 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, MapPin, Send, CheckCircle, MessageCircle, Coffee, AlertCircle, Loader2 } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle, MessageCircle, Coffee, AlertCircle, Loader2, Phone } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 
@@ -111,11 +111,22 @@ export default function Contact() {
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 shrink-0">
+                    <Phone size={18} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">Phone</p>
+                    <a href="tel:+919636147272" className="text-gray-300 hover:text-purple-400 transition-colors text-sm">
+                      +91 96361 47272
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 shrink-0">
                     <MapPin size={18} />
                   </div>
                   <div>
                     <p className="text-sm text-gray-500 mb-1">Location</p>
-                    <p className="text-gray-300 text-sm">India 🇮🇳</p>
+                    <p className="text-gray-300 text-sm">Haryana, India 🇮🇳</p>
                   </div>
                 </div>
               </div>

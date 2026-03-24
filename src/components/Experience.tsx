@@ -37,12 +37,12 @@ const journey = [
 ];
 
 const achievements = [
-  { emoji: "", title: "15+ Projects", detail: "Built & deployed on GitHub" },
+  { emoji: "", title: "16+ Projects", detail: "Built & deployed on GitHub" },
   { emoji: "", title: "AI/ML Projects", detail: "RAG, GPT-2, MLflow pipelines" },
   { emoji: "", title: "Python Focused", detail: "Primary language across repositories" },
   { emoji: "", title: "Full Stack Applications", detail: "Django, FastAPI, Node.js" },
-  { emoji: "", title: "Certifications", detail: "Java, Data Structures & Algorithms" },
-  { emoji: "", title: "Problem Solving", detail: "DSA & algorithmic thinking" },
+  { emoji: "", title: "Certifications", detail: "Java, DSA & more" },
+  { emoji: "", title: "Problem Solving", detail: "100+ DSA Problems Solved" },
 ];
 
 export default function Experience() {
@@ -90,21 +90,19 @@ export default function Experience() {
                 className="relative md:pl-20"
               >
                 {/* Timeline dot */}
-                <div className={`absolute left-6 top-8 w-5 h-5 rounded-full border-2 hidden md:flex items-center justify-center ${
-                  item.highlight
+                <div className={`absolute left-6 top-8 w-5 h-5 rounded-full border-2 hidden md:flex items-center justify-center ${item.highlight
                     ? "bg-purple-500/20 border-purple-400 shadow-lg shadow-purple-500/20"
                     : "bg-gray-950 border-purple-500"
-                }`}>
+                  }`}>
                   <div className={`w-2 h-2 rounded-full ${item.highlight ? "bg-purple-400 animate-pulse" : "bg-purple-400"}`} />
                 </div>
 
                 <motion.div
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className={`group p-8 rounded-2xl border transition-all duration-500 hover:shadow-lg cursor-default ${
-                    item.highlight
+                  className={`group p-8 rounded-2xl border transition-all duration-500 hover:shadow-lg cursor-default ${item.highlight
                       ? "bg-gradient-to-br from-gray-900/80 to-purple-950/20 border-purple-500/30 hover:border-purple-400/50 hover:shadow-purple-500/10"
                       : "bg-gray-900/80 border-gray-800 hover:border-purple-500/30 hover:shadow-purple-500/5"
-                  }`}
+                    }`}
                 >
                   {item.highlight && (
                     <span className="inline-flex items-center gap-1 px-3 py-1 mb-4 text-[10px] font-semibold text-purple-300 bg-purple-500/10 border border-purple-500/20 rounded-full uppercase tracking-wider">
