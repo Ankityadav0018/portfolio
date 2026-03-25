@@ -5,8 +5,8 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { ArrowDown, Sparkles, FileText } from "lucide-react";
 import Photo from "./Photo";
 
-// Google Drive link for your CV/Resume — replace with your actual link
-const RESUME_LINK = "https://drive.google.com/file/d/1tB3srkwsHWvaQfp2DnECAwMJjBLg2jAq/view?usp=drive_link";
+// Local link to your CV/Resume
+const RESUME_LINK = "/resume/Ankityadav_cv.pdf";
 
 const roles = [
   "Python Developer",

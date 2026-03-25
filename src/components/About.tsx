@@ -24,7 +24,7 @@ const highlights = [
 const quickFacts = [
   { icon: <GraduationCap size={18} />, text: "3rd Year @ LPU" },
   { icon: <BookOpen size={18} />, text: "Self-taught Developer" },
-  { icon: <Trophy size={18} />, text: "15+ GitHub Projects" },
+  { icon: <Trophy size={18} />, text: "16+ GitHub Projects" },
   { icon: <Code2 size={18} />, text: "Python & AI/ML Focused" },
 ];
 
@@ -50,10 +50,10 @@ export default function About() {
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          I am a Computer Science undergraduate with a strong focus on AI, Machine Learning,
-          and modern web technologies. I specialize in building projects that integrate data, algorithms,
-          and intuitive interfaces. Through continuous hands-on development,
-          I strive to deliver innovative solutions and grow as a professional developer.
+            I am a Computer Science undergraduate with a strong focus on AI, Machine Learning,
+            and modern web technologies. I specialize in building projects that integrate data, algorithms,
+            and intuitive interfaces. Through continuous hands-on development,
+            I strive to deliver innovative solutions and grow as a professional developer.
           </p>
         </motion.div>
 
