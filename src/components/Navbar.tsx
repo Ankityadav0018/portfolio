@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
-const RESUME_LINK = "https://drive.google.com/file/d/1tB3srkwsHWvaQfp2DnECAwMJjBLg2jAq/view?usp=drive_link";
+const RESUME_LINK = "/resume/Ankit_cv.pdf";
 
 const navLinks = [
   { name: "Home", id: "home" },
@@ -13,14 +13,14 @@ const navLinks = [
   { name: "Journey", id: "journey" },
   { name: "Certificates", id: "certificates" },
   { name: "Contact", id: "contact" },
-  { name: "Resume", href: RESUME_LINK, external: true },
+  { name: "Resume", href: RESUME_LINK, external: false },
 ];
 
-export default function Navbar({ 
-  activePage, 
-  setActivePage 
-}: { 
-  activePage: string; 
+export default function Navbar({
+  activePage,
+  setActivePage
+}: {
+  activePage: string;
   setActivePage: (page: string) => void;
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,11 +44,10 @@ export default function Navbar({
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? "bg-gray-950/80 backdrop-blur-lg shadow-lg shadow-purple-500/5"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <motion.button
@@ -76,17 +75,15 @@ export default function Navbar({
               ) : (
                 <button
                   onClick={() => handleNavClick(link.id!)}
-                  className={`text-sm font-medium relative group transition-colors ${
-                    activePage === link.id
+                  className={`text-sm font-medium relative group transition-colors ${activePage === link.id
                       ? "text-white"
                       : "text-gray-400 hover:text-white"
-                  }`}
+                    }`}
                 >
                   {link.name}
                   <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all ${
-                      activePage === link.id ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all ${activePage === link.id ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
                   />
                 </button>
               )}
@@ -133,11 +130,10 @@ export default function Navbar({
                   ) : (
                     <button
                       onClick={() => handleNavClick(link.id!)}
-                      className={`text-base font-medium transition-colors ${
-                        activePage === link.id
+                      className={`text-base font-medium transition-colors ${activePage === link.id
                           ? "text-purple-400"
                           : "text-gray-300 hover:text-white"
-                      }`}
+                        }`}
                     >
                       {link.name}
                     </button>
