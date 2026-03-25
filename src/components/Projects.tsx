@@ -8,7 +8,6 @@ const GITHUB_USERNAME = "Ankityadav0018";
 // ⚡ Custom project images for top repos
 // The keys here MUST match the 'name' property in the projectsData array below
 const projectImages: Record<string, string> = {
-  "portfolio": "/images/projects/portfolio.png",
   "Campus-Management-System": "/images/projects/campus-management.png",
   "Booking-system": "/images/projects/booking-system.png",
   "FastApi": "/images/projects/fastapi.png",
@@ -29,21 +28,7 @@ export interface Project {
   updated_at: string;
 }
 
-// ⚡ ADD YOUR PROJECTS HERE
-// You can manually add GitHub links, descriptions, and other details.
 const projectsData: Project[] = [
-  {
-    id: 1,
-    name: "portfolio",
-    description: "Personal portfolio website built with Next.js and Tailwind CSS. Features an ultra-premium UI with 3D tilt effects and dynamic components.",
-    html_url: "https://github.com/Ankityadav0018/portfolio",
-    homepage: "https://ankityadav.vercel.app", 
-    language: "TypeScript",
-    stargazers_count: 5,
-    forks_count: 1,
-    topics: ["nextjs", "react", "tailwindcss", "portfolio"],
-    updated_at: new Date().toISOString(),
-  },
   {
     id: 2,
     name: "Campus-Management-System",

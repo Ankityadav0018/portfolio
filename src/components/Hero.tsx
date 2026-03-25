@@ -6,7 +6,7 @@ import { ArrowDown, Sparkles, FileText } from "lucide-react";
 import Photo from "./Photo";
 
 // Local link to your CV/Resume
-const RESUME_LINK = "/resume/Ankityadav_cv.pdf";
+const RESUME_LINK = "/resume/Ankit_cv.pdf";
 
 const roles = [
   "Python Developer",
