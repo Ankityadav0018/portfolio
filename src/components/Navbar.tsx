@@ -1,7 +1,7 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navLinks = [
   { name: "Home", id: "home" },
@@ -23,13 +23,19 @@ export default function Navbar({
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 50);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
 
-  if (typeof window !== "undefined") {
     window.addEventListener("scroll", handleScroll);
-  }
+    // Trigger once on mount to set initial state
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleNavClick = (id: string) => {
     setActivePage(id);
