@@ -75,7 +75,7 @@ const certificates: Certificate[] = [
     issuer: "Certification",
     date: "2025",
     link: "/certificates/ai certificate.pdf",
-    image: "/images/certificates/cert-1.png",
+    image: "/images/certificates/ai-certificate.png",
     skills: ["Artificial Intelligence"],
   },
   {
@@ -84,7 +84,7 @@ const certificates: Certificate[] = [
     issuer: "Certification",
     date: "2025",
     link: "/certificates/dbms.pdf",
-    image: "/images/certificates/cert-2.png",
+    image: "/images/certificates/dbms.png",
     skills: ["Databases", "SQL"],
   },
   {
@@ -93,7 +93,7 @@ const certificates: Certificate[] = [
     issuer: "Certification",
     date: "2025",
     link: "/certificates/83e35f0a-a7d2-4887-8542-06f86f6a11fa.pdf",
-    image: "/images/certificates/cert-3.png",
+    image: "/images/certificates/specialized.png",
     skills: ["Technical Achievement"],
   }
 ];
