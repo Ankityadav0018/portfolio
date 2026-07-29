@@ -54,7 +54,7 @@ const certificates: Certificate[] = [
   {
     id: 5,
     title: "Introduction to Natural Language Processing",
-    issuer: "Infosis",
+    issuer: "Infosys",
     date: "2025",
     link: "/certificates/cert-3.pdf",
     image: "/images/certificates/cert-3.png",
@@ -63,11 +63,38 @@ const certificates: Certificate[] = [
   {
     id: 6,
     title: "Prompt Engineering",
-    issuer: "Infosis",
+    issuer: "Infosys",
     date: "2025",
     link: "/certificates/cert-4.pdf",
     image: "/images/certificates/cert-4.png",
     skills: ["Technical Assessment"],
+  },
+  {
+    id: 7,
+    title: "AI Certification",
+    issuer: "Certification",
+    date: "2025",
+    link: "/certificates/ai certificate.pdf",
+    image: "/images/certificates/cert-1.png",
+    skills: ["Artificial Intelligence"],
+  },
+  {
+    id: 8,
+    title: "Database Management Systems (DBMS)",
+    issuer: "Certification",
+    date: "2025",
+    link: "/certificates/dbms.pdf",
+    image: "/images/certificates/cert-2.png",
+    skills: ["Databases", "SQL"],
+  },
+  {
+    id: 9,
+    title: "Specialized Certification",
+    issuer: "Certification",
+    date: "2025",
+    link: "/certificates/83e35f0a-a7d2-4887-8542-06f86f6a11fa.pdf",
+    image: "/images/certificates/cert-3.png",
+    skills: ["Technical Achievement"],
   }
 ];
 
