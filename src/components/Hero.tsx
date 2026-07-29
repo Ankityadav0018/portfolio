@@ -4,9 +4,10 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { ArrowDown, Sparkles, FileText } from "lucide-react";
 import Photo from "./Photo";
+import TiltCard from "./ui/TiltCard";
 
 // Local link to your CV/Resume
-const RESUME_LINK = "/resume/Ankit_cv.pdf";
+const RESUME_LINK = "/resume/GeneralCVAnkit.pdf";
 
 const roles = [
   "Python Developer",
@@ -98,7 +99,7 @@ export default function Hero({ onNavigate }: { onNavigate?: (page: string) => vo
         }}
       />
 
-      <div className="absolute inset-0 bg-gray-950">
+      <div className="absolute inset-0 bg-transparent">
         {/* Background glow effects removed for cleaner look */}
       </div>
 
@@ -185,12 +186,16 @@ export default function Hero({ onNavigate }: { onNavigate?: (page: string) => vo
         </motion.p>
 
         {/* Add your profile photo here */}
-        <Photo 
-          src="/images/profile.png"  
-          alt="Ankit Yadav" 
-          size="md"
-          showGlow={true}
-        />
+        <TiltCard depth={30} className="inline-block mx-auto">
+          <div style={{ transform: "translateZ(40px)" }}>
+            <Photo 
+              src="/images/profile.png"  
+              alt="Ankit Yadav" 
+              size="md"
+              showGlow={true}
+            />
+          </div>
+        </TiltCard>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}

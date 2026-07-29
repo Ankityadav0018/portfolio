@@ -34,7 +34,7 @@ export default function About() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <section id="about" className="relative py-24 bg-gray-950">
+    <section id="about" className="relative py-24 bg-transparent">
       <div className="max-w-6xl mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}

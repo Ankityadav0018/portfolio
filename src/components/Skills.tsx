@@ -55,6 +55,8 @@ const skillCategories = [
   },
 ];
 
+import TiltCard from "./ui/TiltCard";
+
 function SkillCard({ skill, delay, isInView }: { skill: typeof skillCategories[0]["skills"][0]; delay: number; isInView: boolean }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -63,128 +65,107 @@ function SkillCard({ skill, delay, isInView }: { skill: typeof skillCategories[0
       initial={{ opacity: 0, scale: 0.8 }}
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.4, delay }}
-      whileHover={{ y: -8, transition: { duration: 0.2 } }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      className="group relative flex flex-col items-center justify-center gap-4 p-6 rounded-xl bg-gradient-to-br from-gray-900/80 to-gray-800/40 border border-gray-800/50 hover:border-purple-500/80 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 cursor-default overflow-hidden min-h-[200px]"
+      className="h-full"
     >
-      {/* Animated gradient background on hover */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-t from-purple-500/20 via-transparent to-cyan-500/10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.4 }}
-      />
-
-      {/* Particle effect circles */}
-      {isHovered && (
-        <>
-          <motion.div
-            className="absolute w-20 h-20 rounded-full border border-purple-400/30 top-1/2 left-1/2"
-            initial={{ scale: 0, opacity: 0.8 }}
-            animate={{ scale: 2, opacity: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            style={{ x: "-50%", y: "-50%" }}
-          />
-          <motion.div
-            className="absolute w-32 h-32 rounded-full border border-cyan-400/20 top-1/2 left-1/2"
-            initial={{ scale: 0, opacity: 0.6 }}
-            animate={{ scale: 1.5, opacity: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut", delay: 0.1 }}
-            style={{ x: "-50%", y: "-50%" }}
-          />
-        </>
-      )}
-
-      {/* Floating particles */}
-      {isHovered && (
-        <>
-          {[...Array(5)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 rounded-full bg-purple-400"
-              initial={{
-                x: 0,
-                y: 0,
-                opacity: 1,
-              }}
-              animate={{
-                x: Math.cos((i / 5) * Math.PI * 2) * 60,
-                y: Math.sin((i / 5) * Math.PI * 2) * 60,
-                opacity: 0,
-              }}
-              transition={{
-                duration: 1,
-                ease: "easeOut",
-              }}
-            />
-          ))}
-        </>
-      )}
-
-      <div className="relative z-10 flex flex-col items-center gap-4 w-full">
-        {/* Large Interactive Icon */}
-        <motion.div
-          className="relative w-20 h-20 flex items-center justify-center rounded-2xl bg-gradient-to-br from-gray-800/80 to-gray-900/50 border border-gray-700/50 group-hover:border-purple-400/60 group-hover:from-gray-700/80 group-hover:to-purple-900/30 transition-all duration-300 shadow-lg group-hover:shadow-2xl group-hover:shadow-purple-500/30"
-          animate={isHovered ? { 
-            scale: [1, 1.15, 1.1],
-            rotateZ: [0, -5, 5, 0]
-          } : { 
-            scale: 1,
-            rotateZ: 0
-          }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
+      <TiltCard depth={15} className="h-full">
+        <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="group relative flex flex-col items-center justify-center gap-4 p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-purple-500/50 transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(168,85,247,0.3)] cursor-default overflow-hidden min-h-[200px] h-full"
         >
-          <motion.span
-            className="text-5xl transition-colors duration-300 drop-shadow-lg"
-            style={{ color: isHovered ? skill.color : '#9CA3AF' }}
-            animate={isHovered ? {
-              textShadow: `0 0 20px ${skill.color}40, 0 0 40px ${skill.color}20`
-            } : {
-              textShadow: "0 0 0px transparent"
-            }}
-          >
-            {skill.icon}
-          </motion.span>
+          {/* Animated gradient background on hover */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-t from-purple-500/20 via-transparent to-cyan-500/10 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered ? 1 : 0 }}
+            transition={{ duration: 0.4 }}
+          />
 
-          {/* Glow ring on hover */}
+          {/* Particle effect circles */}
           {isHovered && (
-            <motion.div
-              className="absolute inset-0 rounded-2xl border-2"
-              style={{ borderColor: skill.color }}
-              initial={{ scale: 1, opacity: 1 }}
-              animate={{ scale: 1.3, opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            />
+            <>
+              <motion.div
+                className="absolute w-20 h-20 rounded-full border border-purple-400/30 top-1/2 left-1/2 pointer-events-none"
+                initial={{ scale: 0, opacity: 0.8 }}
+                animate={{ scale: 2, opacity: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                style={{ x: "-50%", y: "-50%" }}
+              />
+              <motion.div
+                className="absolute w-32 h-32 rounded-full border border-cyan-400/20 top-1/2 left-1/2 pointer-events-none"
+                initial={{ scale: 0, opacity: 0.6 }}
+                animate={{ scale: 1.5, opacity: 0 }}
+                transition={{ duration: 1.2, ease: "easeOut", delay: 0.1 }}
+                style={{ x: "-50%", y: "-50%" }}
+              />
+            </>
           )}
-        </motion.div>
 
-        {/* Skill Name */}
-        <motion.span 
-          className="text-sm font-bold text-gray-300 group-hover:text-white transition-colors text-center tracking-wide"
-          animate={isHovered ? { scale: 1.1 } : { scale: 1 }}
-          transition={{ duration: 0.2 }}
-        >
-          {skill.name}
-        </motion.span>
-
-        {/* Proficiency Level - Always Visible */}
-        <div className="w-full mt-2">
-          {/* Progress Bar */}
-          <div className="w-full h-2 bg-gray-700/50 rounded-full overflow-hidden mb-2">
+          <div className="relative z-10 flex flex-col items-center gap-4 w-full" style={{ transform: "translateZ(30px)" }}>
+            {/* Large Interactive Icon */}
             <motion.div
-              className="h-full bg-gradient-to-r from-purple-500 to-cyan-500"
-              initial={{ width: 0 }}
-              animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: delay + 0.2 }}
-            />
+              className="relative w-20 h-20 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 group-hover:border-purple-400/60 group-hover:bg-purple-900/20 transition-all duration-300 shadow-lg group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+              animate={isHovered ? { 
+                scale: [1, 1.15, 1.1],
+                rotateZ: [0, -5, 5, 0]
+              } : { 
+                scale: 1,
+                rotateZ: 0
+              }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            >
+              <motion.span
+                className="text-5xl transition-colors duration-300 drop-shadow-lg"
+                style={{ color: isHovered ? skill.color : '#cbd5e1' }}
+                animate={isHovered ? {
+                  textShadow: `0 0 20px ${skill.color}80, 0 0 40px ${skill.color}40`
+                } : {
+                  textShadow: "0 0 0px transparent"
+                }}
+              >
+                {skill.icon}
+              </motion.span>
+
+              {/* Glow ring on hover */}
+              {isHovered && (
+                <motion.div
+                  className="absolute inset-0 rounded-2xl border-2 pointer-events-none"
+                  style={{ borderColor: skill.color }}
+                  initial={{ scale: 1, opacity: 1 }}
+                  animate={{ scale: 1.3, opacity: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
+              )}
+            </motion.div>
+
+            {/* Skill Name */}
+            <motion.span 
+              className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors text-center tracking-wide"
+              animate={isHovered ? { scale: 1.1 } : { scale: 1 }}
+              transition={{ duration: 0.2 }}
+            >
+              {skill.name}
+            </motion.span>
+
+            {/* Proficiency Level - Always Visible */}
+            <div className="w-full mt-2" style={{ transform: "translateZ(10px)" }}>
+              {/* Progress Bar */}
+              <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden mb-2 shadow-inner">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-purple-500 to-cyan-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+                  initial={{ width: 0 }}
+                  animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: delay + 0.2 }}
+                />
+              </div>
+              {/* Percentage Text */}
+              <p className="text-center text-xs font-bold text-purple-300 drop-shadow-sm">
+                {skill.level}%
+              </p>
+            </div>
           </div>
-          {/* Percentage Text */}
-          <p className="text-center text-xs font-semibold text-purple-400">
-            {skill.level}%
-          </p>
         </div>
-      </div>
+      </TiltCard>
     </motion.div>
   );
 }
@@ -194,7 +175,7 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="relative py-24 bg-gray-950">
+    <section id="skills" className="relative py-24 bg-transparent">
       <div className="absolute top-0 right-0 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-72 h-72 bg-cyan-500/5 rounded-full blur-3xl" />
 

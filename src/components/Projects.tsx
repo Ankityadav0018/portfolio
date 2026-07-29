@@ -2,6 +2,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Github, Eye, Star, GitFork } from "lucide-react";
+import TiltCard from "./ui/TiltCard";
 
 const GITHUB_USERNAME = "Ankityadav0018";
 
@@ -147,7 +148,7 @@ export default function Projects() {
   const displayedRepos = showAll ? repos : repos.slice(0, 6);
 
   return (
-    <section id="projects" className="relative py-24 bg-gray-950">
+    <section id="projects" className="relative py-24 bg-transparent">
       <div className="max-w-6xl mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -180,121 +181,127 @@ export default function Projects() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.1 + index * 0.06 }}
-                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                  onHoverStart={() => setHoveredProject(index)}
-                  onHoverEnd={() => setHoveredProject(null)}
-                  onClick={() => window.open(repo.html_url, '_blank')}
-                  className="group relative rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-purple-500/30 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 cursor-pointer"
+                  className="h-full"
                 >
-                  <div className={`relative w-full h-44 overflow-hidden bg-gradient-to-br ${gradients[index % gradients.length]}`}>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                      <Github size={32} className="text-gray-500/60" />
-                      {repo.language && (
-                        <span className="text-xs font-medium text-gray-400/60 uppercase tracking-wider">{repo.language}</span>
-                      )}
-                    </div>
-                    <img
-                      src={projectImages[repo.name] || `https://socialify.git.ci/${GITHUB_USERNAME}/${repo.name}/image?language=1&name=1&owner=1&theme=Dark&font=Inter`}
-                      alt={repo.name}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 z-10"
-                      loading="lazy"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = "none";
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent z-20" />
-                  </div>
+                  <TiltCard depth={20} className="h-full">
+                    <div
+                      onMouseEnter={() => setHoveredProject(index)}
+                      onMouseLeave={() => setHoveredProject(null)}
+                      onClick={() => window.open(repo.html_url, '_blank')}
+                      className="group relative h-full rounded-2xl bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-purple-500/50 overflow-hidden transition-all duration-500 shadow-2xl hover:shadow-[0_0_40px_rgba(168,85,247,0.2)] cursor-pointer flex flex-col"
+                    >
+                      <div className={`relative w-full h-48 overflow-hidden bg-gradient-to-br ${gradients[index % gradients.length]}`}>
+                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+                          <Github size={32} className="text-white/40" />
+                          {repo.language && (
+                            <span className="text-xs font-medium text-white/40 uppercase tracking-wider">{repo.language}</span>
+                          )}
+                        </div>
+                        <img
+                          src={projectImages[repo.name] || `https://socialify.git.ci/${GITHUB_USERNAME}/${repo.name}/image?language=1&name=1&owner=1&theme=Dark&font=Inter`}
+                          alt={repo.name}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1 z-10 opacity-90 group-hover:opacity-100"
+                          loading="lazy"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = "none";
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-900/40 to-transparent z-20" />
+                      </div>
 
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-cyan-500/5"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: hoveredProject === index ? 1 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 z-20 pointer-events-none"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: hoveredProject === index ? 1 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      />
 
-                  <div className="relative z-10 p-7">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-3 min-w-0">
-                        {repoEmojis.length > 0 && (
-                          <motion.span
-                            className="text-2xl shrink-0"
-                            animate={hoveredProject === index ? { scale: [1, 1.3, 1], rotate: [0, 10, -10, 0] } : {}}
-                            transition={{ duration: 0.5 }}
-                          >
-                            {repoEmojis[index % repoEmojis.length]}
-                          </motion.span>
-                        )}
-                        <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors truncate">
-                          {repo.name}
-                        </h3>
+                      <div className="relative z-30 p-7 flex-1 flex flex-col">
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="flex items-center gap-3 min-w-0" style={{ transform: "translateZ(30px)" }}>
+                            {repoEmojis.length > 0 && (
+                              <motion.span
+                                className="text-3xl shrink-0"
+                                animate={hoveredProject === index ? { scale: [1, 1.2, 1], rotate: [0, 15, -15, 0] } : {}}
+                                transition={{ duration: 0.5 }}
+                              >
+                                {repoEmojis[index % repoEmojis.length]}
+                              </motion.span>
+                            )}
+                            <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors truncate">
+                              {repo.name}
+                            </h3>
+                          </div>
+                        </div>
+
+                        <p className="text-gray-300 mb-6 leading-relaxed text-sm line-clamp-3" style={{ transform: "translateZ(20px)" }}>
+                          {repo.description || "No description provided."}
+                        </p>
+
+                        <div className="mt-auto">
+                          <div className="flex items-center gap-4 mb-5 text-xs text-gray-400 font-medium" style={{ transform: "translateZ(15px)" }}>
+                            {repo.language && (
+                              <span className="flex items-center gap-1.5">
+                                <span
+                                  className="w-2.5 h-2.5 rounded-full shrink-0 shadow-[0_0_10px_currentColor]"
+                                  style={{ backgroundColor: languageColors[repo.language] || "#8b8b8b", color: languageColors[repo.language] || "#8b8b8b" }}
+                                />
+                                {repo.language}
+                              </span>
+                            )}
+                            {repo.stargazers_count > 0 && (
+                              <span className="flex items-center gap-1">
+                                <Star size={12} className="text-yellow-400" />
+                                {repo.stargazers_count}
+                              </span>
+                            )}
+                            {repo.forks_count > 0 && (
+                              <span className="flex items-center gap-1">
+                                <GitFork size={12} className="text-gray-300" />
+                                {repo.forks_count}
+                              </span>
+                            )}
+                          </div>
+
+                          {repo.topics && repo.topics.length > 0 && (
+                            <div className="flex flex-wrap gap-2 mb-6" style={{ transform: "translateZ(25px)" }}>
+                              {repo.topics.slice(0, 4).map((topic) => (
+                                <span
+                                  key={topic}
+                                  className="px-3 py-1 text-[11px] font-semibold text-purple-200 bg-white/5 border border-purple-500/30 rounded-full shadow-sm backdrop-blur-sm"
+                                >
+                                  {topic}
+                                </span>
+                              ))}
+                              {repo.topics.length > 4 && (
+                                <span className="px-3 py-1 text-[11px] font-semibold text-gray-300 bg-white/5 border border-white/10 rounded-full shadow-sm backdrop-blur-sm">
+                                  +{repo.topics.length - 4}
+                                </span>
+                              )}
+                            </div>
+                          )}
+
+                          <div className="flex items-center gap-3 pt-5 border-t border-white/10" style={{ transform: "translateZ(35px)" }}>
+                            <span className="flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-gray-300 bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-transparent hover:border-white/20">
+                              <Github size={16} /> Code
+                            </span>
+                            {repo.homepage && (
+                              <a
+                                href={repo.homepage}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] transition-all hover:scale-105 active:scale-95 border border-white/20"
+                              >
+                                <Eye size={16} /> Live Demo
+                              </a>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
-
-                    <p className="text-gray-400 mb-4 leading-relaxed text-sm line-clamp-3 min-h-[3.75rem]">
-                      {repo.description || "No description provided."}
-                    </p>
-
-                    <div className="flex items-center gap-4 mb-4 text-xs text-gray-500">
-                      {repo.language && (
-                        <span className="flex items-center gap-1.5">
-                          <span
-                            className="w-2.5 h-2.5 rounded-full shrink-0"
-                            style={{ backgroundColor: languageColors[repo.language] || "#8b8b8b" }}
-                          />
-                          {repo.language}
-                        </span>
-                      )}
-                      {repo.stargazers_count > 0 && (
-                        <span className="flex items-center gap-1">
-                          <Star size={12} className="text-yellow-500" />
-                          {repo.stargazers_count}
-                        </span>
-                      )}
-                      {repo.forks_count > 0 && (
-                        <span className="flex items-center gap-1">
-                          <GitFork size={12} />
-                          {repo.forks_count}
-                        </span>
-                      )}
-                      <span className="ml-auto">{getTimeAgo(repo.updated_at)}</span>
-                    </div>
-
-                    {repo.topics && repo.topics.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 mb-5">
-                        {repo.topics.slice(0, 4).map((topic) => (
-                          <span
-                            key={topic}
-                            className="px-2.5 py-1 text-[11px] font-medium text-purple-300 bg-purple-500/10 border border-purple-500/20 rounded-full"
-                          >
-                            {topic}
-                          </span>
-                        ))}
-                        {repo.topics.length > 4 && (
-                          <span className="px-2.5 py-1 text-[11px] font-medium text-gray-500 bg-gray-800/50 rounded-full">
-                            +{repo.topics.length - 4}
-                          </span>
-                        )}
-                      </div>
-                    )}
-
-                    <div className="flex items-center gap-3 pt-4 border-t border-gray-800/50">
-                      <span className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-gray-400 bg-gray-800/50 rounded-lg group-hover:text-white group-hover:bg-gray-800 transition-all">
-                        <Github size={14} /> View Repo
-                      </span>
-                      {repo.homepage && (
-                        <a
-                          href={repo.homepage}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-purple-300 bg-purple-500/10 rounded-lg hover:bg-purple-500/20 transition-all hover:scale-105 active:scale-95"
-                        >
-                          <Eye size={14} /> Live Demo
-                        </a>
-                      )}
-                    </div>
-                  </div>
+                  </TiltCard>
                 </motion.div>
               ))}
             </div>

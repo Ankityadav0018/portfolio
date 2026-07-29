@@ -10,6 +10,7 @@ import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
+import HeroCanvas from "@/components/3d/HeroCanvas";
 
 const pages = [
   { id: "home", name: "Home", component: Hero },
@@ -24,23 +25,15 @@ const pages = [
 export default function Home() {
   const [activePage, setActivePage] = useState("home");
 
-  const CurrentComponent = pages.find((p) => p.id === activePage)?.component || Hero;
-
   return (
     <>
+      <HeroCanvas />
       <Navbar activePage={activePage} setActivePage={setActivePage} />
-      <main className="min-h-screen">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activePage}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <CurrentComponent onNavigate={setActivePage} />
-          </motion.div>
-        </AnimatePresence>
+      <main className="min-h-screen relative z-10 flex flex-col">
+        {pages.map((page) => {
+          const Component = page.component;
+          return <Component key={page.id} onNavigate={setActivePage} />;
+        })}
       </main>
       <Footer />
     </>

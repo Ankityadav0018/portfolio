@@ -192,7 +192,7 @@ export default function Certificates() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="certificates" className="relative py-28 bg-gray-950 overflow-hidden">
+    <section id="certificates" className="relative py-28 bg-transparent overflow-hidden">
       {/* Background glowing orbs */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />

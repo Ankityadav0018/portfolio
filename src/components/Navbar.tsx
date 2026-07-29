@@ -34,6 +34,10 @@ export default function Navbar({
   const handleNavClick = (id: string) => {
     setActivePage(id);
     setMobileOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (

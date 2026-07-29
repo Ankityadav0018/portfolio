@@ -51,7 +51,7 @@ export default function Experience() {
   const [hoveredAchievement, setHoveredAchievement] = useState<number | null>(null);
 
   return (
-    <section id="experience" className="relative py-24 bg-gray-950">
+    <section id="experience" className="relative py-24 bg-transparent">
       <div className="absolute top-1/2 left-0 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-cyan-500/5 rounded-full blur-3xl" />
 
