@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import CustomCursor from "@/components/ui/CustomCursor";
+import PageLoader from "@/components/ui/PageLoader";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Ankit Yadav | Portfolio",
-  description: "Full Stack Developer portfolio — building beautiful, performant web applications with modern technologies.",
-  keywords: ["portfolio", "developer", "full stack", "react", "next.js", "ankit yadav"],
+  title: "AI/ML Engineer Portfolio",
+  description: "B.Tech CSE student specializing in AI, Machine Learning, and Full-Stack Development.",
 };
 
 export default function RootLayout({
@@ -24,12 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body
-        suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-950 text-white`}
-      >
-        {children}
+    <html lang="en" className="dark">
+      <body className={`${inter.variable} antialiased bg-navy-900 text-text-body overflow-x-hidden selection:bg-violet-600/30 selection:text-white`}>
+        <PageLoader />
+        <CustomCursor />
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

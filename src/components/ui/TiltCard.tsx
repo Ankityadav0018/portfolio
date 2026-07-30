@@ -1,22 +1,21 @@
 "use client";
+import React, { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
-import { useRef, useState, ReactNode } from "react";
-import { motion } from "framer-motion";
-
-interface TiltCardProps {
-  children: ReactNode;
-  className?: string;
-  depth?: number;
-}
-
-export default function TiltCard({ children, className = "", depth = 20 }: TiltCardProps) {
+export default function TiltCard({ children, className = "" }: { children: React.ReactNode, className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
+  
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7.5deg", "-7.5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7.5deg", "7.5deg"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
-    
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -24,17 +23,16 @@ export default function TiltCard({ children, className = "", depth = 20 }: TiltC
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
     
-    // Calculate rotation (-depth to +depth)
-    const rX = ((mouseY / height) - 0.5) * -depth;
-    const rY = ((mouseX / width) - 0.5) * depth;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
     
-    setRotateX(rX);
-    setRotateY(rY);
+    x.set(xPct);
+    y.set(yPct);
   };
 
   const handleMouseLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
+    x.set(0);
+    y.set(0);
   };
 
   return (
@@ -42,20 +40,16 @@ export default function TiltCard({ children, className = "", depth = 20 }: TiltC
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      animate={{
+      style={{
         rotateX,
         rotateY,
-      }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      style={{
         transformStyle: "preserve-3d",
       }}
-      className={`relative [perspective:1000px] ${className}`}
+      className={`relative w-full rounded-2xl group cursor-pointer ${className}`}
     >
-      <div 
-        style={{ transform: "translateZ(40px)", transformStyle: "preserve-3d" }}
-        className="w-full h-full relative"
-      >
+      {/* Animated gradient border on hover */}
+      <div className="absolute inset-[-2px] rounded-[18px] bg-accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
+      <div className="relative w-full h-full transform-gpu" style={{ transform: "translateZ(30px)" }}>
         {children}
       </div>
     </motion.div>

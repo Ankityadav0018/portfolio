@@ -1,347 +1,87 @@
 "use client";
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Github, Eye, Star, GitFork } from "lucide-react";
-import TiltCard from "./ui/TiltCard";
+import React from 'react';
+import TiltCard from './ui/TiltCard';
+import { ExternalLink } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
 
-const GITHUB_USERNAME = "Ankityadav0018";
-
-// ⚡ Custom project images for top repos
-// The keys here MUST match the 'name' property in the projectsData array below
-const projectImages: Record<string, string> = {
-  "Campus-Management-System": "/images/projects/campus-management.png",
-  "Booking-system": "/images/projects/booking-system.png",
-  "FastApi": "/images/projects/fastapi.png",
-  "whatsapp-bot-n8n": "/images/projects/whatsapp-bot.png",
-  "mlflow": "/images/projects/mlflow.png",
-};
-
-export interface Project {
-  id: number;
-  name: string;
-  description: string;
-  html_url: string;
-  homepage: string;
-  language: string;
-  stargazers_count: number;
-  forks_count: number;
-  topics: string[];
-  updated_at: string;
-}
-
-const projectsData: Project[] = [
+const projects = [
   {
-    id: 2,
-    name: "Campus-Management-System",
-    description: "A comprehensive campus management system to handle student records, faculty information, and administrative tasks efficiently.",
-    html_url: "https://github.com/Ankityadav0018/Campus-Management-System",
-    homepage: "",
-    language: "TypeScript",
-    stargazers_count: 3,
-    forks_count: 0,
-    topics: ["management-system", "campus"],
-    updated_at: new Date().toISOString(),
+    title: "Traffic Demand Prediction",
+    type: "Machine Learning Flagship",
+    description: "Developed a LightGBM model utilizing geohash and timestamp features for high-accuracy traffic prediction. Implemented hierarchical fallback encoding for cold-start scenarios and lag features to exploit high autocorrelation.",
+    metrics: "Reduced MAPE by 15% compared to baseline",
+    tech: ["Python", "LightGBM", "Pandas", "Geohash", "Scikit-Learn"],
+    github: "#",
+    demo: "#"
   },
   {
-    id: 3,
-    name: "Booking-system",
-    description: "An advanced booking system application allowing users to reserve slots, manage appointments, and handle payments seamlessly.",
-    html_url: "https://github.com/Ankityadav0018/Booking-system",
-    homepage: "",
-    language: "JavaScript",
-    stargazers_count: 2,
-    forks_count: 1,
-    topics: ["booking", "reservation"],
-    updated_at: new Date().toISOString(),
+    title: "KaamKaaz (Antigravity)",
+    type: "Full-Stack Architecture",
+    description: "Hyperlocal daily-wage worker platform featuring 14-language support and distance-based job filtering. Built scalable microservice-like backend with real-time sockets and robust background job processing.",
+    metrics: "Handles 1000+ concurrent connections",
+    tech: ["Flutter", "Node.js", "MongoDB", "Redis", "BullMQ", "Socket.io"],
+    github: "#",
+    demo: "#"
   },
   {
-    id: 4,
-    name: "FastApi",
-    description: "High-performance API built using FastAPI, showcasing asynchronous request handling, database integration, and robust validation.",
-    html_url: "https://github.com/Ankityadav0018/FastApi",
-    homepage: "",
-    language: "Python",
-    stargazers_count: 4,
-    forks_count: 2,
-    topics: ["fastapi", "python", "backend"],
-    updated_at: new Date().toISOString(),
-  },
-  {
-    id: 5,
-    name: "whatsapp-bot-n8n",
-    description: "Automated WhatsApp bot powered by n8n workflows. Handles customer inquiries, sends notifications, and integrates with CRM systems.",
-    html_url: "https://github.com/Ankityadav0018/whatsapp-bot-n8n",
-    homepage: "",
-    language: "JavaScript",
-    stargazers_count: 6,
-    forks_count: 3,
-    topics: ["bot", "automation", "n8n", "whatsapp"],
-    updated_at: new Date().toISOString(),
-  },
-  {
-    id: 6,
-    name: "mlflow",
-    description: "Machine learning workflow implementation using MLflow for tracking experiments, packaging code, and deploying models.",
-    html_url: "https://github.com/Ankityadav0018/mlflow",
-    homepage: "",
-    language: "Python",
-    stargazers_count: 2,
-    forks_count: 0,
-    topics: ["machine-learning", "mlflow", "data-science"],
-    updated_at: new Date().toISOString(),
+    title: "Predictive Maintenance System",
+    type: "Infosys Internship",
+    description: "AI plant diagnosis system identifying potential equipment failures before they occur. Processed large-scale industrial IoT data streams for real-time anomaly detection.",
+    metrics: "92% Anomaly Detection Accuracy",
+    tech: ["PyTorch", "IoT", "Time-Series Analysis", "Python"],
+    github: "#",
+    demo: "#"
   }
 ];
 
-const languageColors: Record<string, string> = {
-  TypeScript: "#3178C6",
-  JavaScript: "#F7DF1E",
-  Python: "#3776AB",
-  HTML: "#E34F26",
-  CSS: "#1572B6",
-  EJS: "#A91E50",
-  Java: "#ED8B00",
-  "C++": "#00599C",
-  C: "#A8B9CC",
-  Go: "#00ADD8",
-  Rust: "#DEA584",
-  Ruby: "#CC342D",
-  PHP: "#777BB4",
-  Swift: "#FA7343",
-  Kotlin: "#A97BFF",
-  Dart: "#0175C2",
-  Shell: "#89E051",
-  Vue: "#4FC08D",
-  SCSS: "#C6538C",
-};
-
-const gradients = [
-  "from-purple-500/20 to-pink-500/20",
-  "from-cyan-500/20 to-blue-500/20",
-  "from-green-500/20 to-emerald-500/20",
-  "from-orange-500/20 to-yellow-500/20",
-  "from-violet-500/20 to-fuchsia-500/20",
-  "from-rose-500/20 to-red-500/20",
-  "from-teal-500/20 to-cyan-500/20",
-  "from-amber-500/20 to-orange-500/20",
-  "from-indigo-500/20 to-purple-500/20",
-];
-
-const repoEmojis: string[] = ["🚀", "⚡", "💡", "🛠️", "🌟", "🔥"];
-
-function getTimeAgo(dateStr: string) {
-  const diff = Date.now() - new Date(dateStr).getTime();
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  if (days === 0) return "today";
-  if (days === 1) return "yesterday";
-  if (days < 30) return `${days}d ago`;
-  if (days < 365) return `${Math.floor(days / 30)}mo ago`;
-  return `${Math.floor(days / 365)}y ago`;
-}
-
 export default function Projects() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  const [showAll, setShowAll] = useState(false);
-
-  const repos = projectsData;
-  const displayedRepos = showAll ? repos : repos.slice(0, 6);
-
   return (
-    <section id="projects" className="relative py-24 bg-transparent">
-      <div className="max-w-6xl mx-auto px-6" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="text-sm font-medium text-purple-400 uppercase tracking-widest">
-            Projects
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6">
-            Featured{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Projects
-            </span>
-          </h2>
-          <p className="text-gray-400 max-w-xl mx-auto text-lg">
-            A selection of projects I have developed and deployed.
-          </p>
-        </motion.div>
+    <section className="relative py-32 px-6 md:px-24 bg-navy-800 border-y border-white/5">
+      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 100% 100%, #22D3EE 10%, transparent 50%)' }} />
+      
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-text-heading mb-16">
+          Featured <span className="text-cyan-400">Implementations</span>
+        </h2>
 
-        {repos.length === 0 ? (
-          <p className="text-center text-gray-500 py-20">No public repos found.</p>
-        ) : (
-          <>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {displayedRepos.map((repo, index) => (
-                <motion.div
-                  key={repo.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.1 + index * 0.06 }}
-                  className="h-full"
-                >
-                  <TiltCard depth={20} className="h-full">
-                    <div
-                      onMouseEnter={() => setHoveredProject(index)}
-                      onMouseLeave={() => setHoveredProject(null)}
-                      onClick={() => window.open(repo.html_url, '_blank')}
-                      className="group relative h-full rounded-2xl bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-purple-500/50 overflow-hidden transition-all duration-500 shadow-2xl hover:shadow-[0_0_40px_rgba(168,85,247,0.2)] cursor-pointer flex flex-col"
-                    >
-                      <div className={`relative w-full h-48 overflow-hidden bg-gradient-to-br ${gradients[index % gradients.length]}`}>
-                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                          <Github size={32} className="text-white/40" />
-                          {repo.language && (
-                            <span className="text-xs font-medium text-white/40 uppercase tracking-wider">{repo.language}</span>
-                          )}
-                        </div>
-                        <img
-                          src={projectImages[repo.name] || `https://socialify.git.ci/${GITHUB_USERNAME}/${repo.name}/image?language=1&name=1&owner=1&theme=Dark&font=Inter`}
-                          alt={repo.name}
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1 z-10 opacity-90 group-hover:opacity-100"
-                          loading="lazy"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = "none";
-                          }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-900/40 to-transparent z-20" />
-                      </div>
-
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 z-20 pointer-events-none"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: hoveredProject === index ? 1 : 0 }}
-                        transition={{ duration: 0.3 }}
-                      />
-
-                      <div className="relative z-30 p-7 flex-1 flex flex-col">
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex items-center gap-3 min-w-0" style={{ transform: "translateZ(30px)" }}>
-                            {repoEmojis.length > 0 && (
-                              <motion.span
-                                className="text-3xl shrink-0"
-                                animate={hoveredProject === index ? { scale: [1, 1.2, 1], rotate: [0, 15, -15, 0] } : {}}
-                                transition={{ duration: 0.5 }}
-                              >
-                                {repoEmojis[index % repoEmojis.length]}
-                              </motion.span>
-                            )}
-                            <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors truncate">
-                              {repo.name}
-                            </h3>
-                          </div>
-                        </div>
-
-                        <p className="text-gray-300 mb-6 leading-relaxed text-sm line-clamp-3" style={{ transform: "translateZ(20px)" }}>
-                          {repo.description || "No description provided."}
-                        </p>
-
-                        <div className="mt-auto">
-                          <div className="flex items-center gap-4 mb-5 text-xs text-gray-400 font-medium" style={{ transform: "translateZ(15px)" }}>
-                            {repo.language && (
-                              <span className="flex items-center gap-1.5">
-                                <span
-                                  className="w-2.5 h-2.5 rounded-full shrink-0 shadow-[0_0_10px_currentColor]"
-                                  style={{ backgroundColor: languageColors[repo.language] || "#8b8b8b", color: languageColors[repo.language] || "#8b8b8b" }}
-                                />
-                                {repo.language}
-                              </span>
-                            )}
-                            {repo.stargazers_count > 0 && (
-                              <span className="flex items-center gap-1">
-                                <Star size={12} className="text-yellow-400" />
-                                {repo.stargazers_count}
-                              </span>
-                            )}
-                            {repo.forks_count > 0 && (
-                              <span className="flex items-center gap-1">
-                                <GitFork size={12} className="text-gray-300" />
-                                {repo.forks_count}
-                              </span>
-                            )}
-                          </div>
-
-                          {repo.topics && repo.topics.length > 0 && (
-                            <div className="flex flex-wrap gap-2 mb-6" style={{ transform: "translateZ(25px)" }}>
-                              {repo.topics.slice(0, 4).map((topic) => (
-                                <span
-                                  key={topic}
-                                  className="px-3 py-1 text-[11px] font-semibold text-purple-200 bg-white/5 border border-purple-500/30 rounded-full shadow-sm backdrop-blur-sm"
-                                >
-                                  {topic}
-                                </span>
-                              ))}
-                              {repo.topics.length > 4 && (
-                                <span className="px-3 py-1 text-[11px] font-semibold text-gray-300 bg-white/5 border border-white/10 rounded-full shadow-sm backdrop-blur-sm">
-                                  +{repo.topics.length - 4}
-                                </span>
-                              )}
-                            </div>
-                          )}
-
-                          <div className="flex items-center gap-3 pt-5 border-t border-white/10" style={{ transform: "translateZ(35px)" }}>
-                            <span className="flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-gray-300 bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-transparent hover:border-white/20">
-                              <Github size={16} /> Code
-                            </span>
-                            {repo.homepage && (
-                              <a
-                                href={repo.homepage}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => e.stopPropagation()}
-                                className="flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] transition-all hover:scale-105 active:scale-95 border border-white/20"
-                              >
-                                <Eye size={16} /> Live Demo
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((proj, idx) => (
+            <TiltCard key={idx} className="h-full">
+              <div className="bg-navy-900 border border-card-border rounded-2xl p-8 h-full flex flex-col justify-between group-hover:border-violet-500/30 transition-colors duration-300">
+                
+                <div>
+                  <div className="flex justify-between items-start mb-6">
+                    <span className="text-xs font-bold uppercase tracking-wider text-violet-500 bg-violet-500/10 px-3 py-1 rounded-full border border-violet-500/20">
+                      {proj.type}
+                    </span>
+                    <div className="flex gap-3">
+                      <a href={proj.github} className="text-text-body hover:text-cyan-400 transition-colors"><FaGithub size={20} /></a>
+                      <a href={proj.demo} className="text-text-body hover:text-cyan-400 transition-colors"><ExternalLink size={20} /></a>
                     </div>
-                  </TiltCard>
-                </motion.div>
-              ))}
-            </div>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-text-heading mb-4">{proj.title}</h3>
+                  <p className="text-text-body font-light text-sm leading-relaxed mb-6">
+                    {proj.description}
+                  </p>
+                  
+                  <div className="mb-6 inline-flex items-center gap-2 text-xs font-medium text-cyan-400 bg-cyan-400/10 px-3 py-1.5 rounded-lg border border-cyan-400/20">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                    {proj.metrics}
+                  </div>
+                </div>
 
-            {repos.length > 6 && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : {}}
-                transition={{ delay: 0.5 }}
-                className="flex justify-center mt-10"
-              >
-                <motion.button
-                  onClick={() => setShowAll(!showAll)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-3 text-sm font-medium text-purple-300 bg-purple-500/10 border border-purple-500/20 rounded-full hover:bg-purple-500/20 transition-all"
-                >
-                  {showAll ? "Show Less" : `Show All ${repos.length} Repos`}
-                </motion.button>
-              </motion.div>
-            )}
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.6 }}
-              className="flex justify-center mt-6"
-            >
-              <a
-                href={`https://github.com/${GITHUB_USERNAME}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-gray-500 hover:text-purple-400 transition-colors flex items-center gap-2"
-              >
-                <Github size={16} />
-                View full GitHub profile →
-              </a>
-            </motion.div>
-          </>
-        )}
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {proj.tech.map((t, i) => (
+                    <span key={i} className="text-xs font-medium text-text-body bg-navy-800 px-2 py-1 rounded border border-white/5">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </TiltCard>
+          ))}
+        </div>
       </div>
     </section>
   );
