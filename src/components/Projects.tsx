@@ -6,30 +6,48 @@ import { FaGithub } from 'react-icons/fa';
 
 const projects = [
   {
-    title: "Traffic Demand Prediction",
-    type: "Machine Learning Flagship",
-    description: "Developed a LightGBM model utilizing geohash and timestamp features for high-accuracy traffic prediction. Implemented hierarchical fallback encoding for cold-start scenarios and lag features to exploit high autocorrelation.",
-    metrics: "Reduced MAPE by 15% compared to baseline",
-    tech: ["Python", "LightGBM", "Pandas", "Geohash", "Scikit-Learn"],
-    github: "#",
+    title: "Campus Management System",
+    type: "TypeScript",
+    description: "A comprehensive campus management system to handle student records, faculty information, and administrative tasks efficiently.",
+    metrics: "3 Stars",
+    tech: ["TypeScript", "Management-System", "Campus"],
+    github: "https://github.com/Ankityadav0018/Campus-Management-System",
     demo: "#"
   },
   {
-    title: "KaamKaaz (Antigravity)",
-    type: "Full-Stack Architecture",
-    description: "Hyperlocal daily-wage worker platform featuring 14-language support and distance-based job filtering. Built scalable microservice-like backend with real-time sockets and robust background job processing.",
-    metrics: "Handles 1000+ concurrent connections",
-    tech: ["Flutter", "Node.js", "MongoDB", "Redis", "BullMQ", "Socket.io"],
-    github: "#",
+    title: "Booking System",
+    type: "JavaScript",
+    description: "An advanced booking system application allowing users to reserve slots, manage appointments, and handle payments seamlessly.",
+    metrics: "2 Stars",
+    tech: ["JavaScript", "Booking", "Reservation"],
+    github: "https://github.com/Ankityadav0018/Booking-system",
     demo: "#"
   },
   {
-    title: "Predictive Maintenance System",
-    type: "Infosys Internship",
-    description: "AI plant diagnosis system identifying potential equipment failures before they occur. Processed large-scale industrial IoT data streams for real-time anomaly detection.",
-    metrics: "92% Anomaly Detection Accuracy",
-    tech: ["PyTorch", "IoT", "Time-Series Analysis", "Python"],
-    github: "#",
+    title: "FastAPI",
+    type: "Python",
+    description: "High-performance API built using FastAPI, showcasing asynchronous request handling, database integration, and robust validation.",
+    metrics: "4 Stars",
+    tech: ["FastAPI", "Python", "Backend"],
+    github: "https://github.com/Ankityadav0018/FastApi",
+    demo: "#"
+  },
+  {
+    title: "WhatsApp Bot (n8n)",
+    type: "JavaScript",
+    description: "Automated WhatsApp bot powered by n8n workflows. Handles customer inquiries, sends notifications, and integrates with CRM systems.",
+    metrics: "6 Stars",
+    tech: ["Bot", "Automation", "n8n", "WhatsApp"],
+    github: "https://github.com/Ankityadav0018/whatsapp-bot-n8n",
+    demo: "#"
+  },
+  {
+    title: "MLflow",
+    type: "Python",
+    description: "Machine learning workflow implementation using MLflow for tracking experiments, packaging code, and deploying models.",
+    metrics: "2 Stars",
+    tech: ["Machine-Learning", "MLflow", "Data-Science"],
+    github: "https://github.com/Ankityadav0018/mlflow",
     demo: "#"
   }
 ];

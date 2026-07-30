@@ -26,17 +26,17 @@ export default function About() {
         </h2>
         
         <p className="text-xl text-text-body font-light leading-relaxed">
-          I am driven by the challenge of transforming raw data into actionable intelligence. 
-          My focus lies at the intersection of Machine Learning and Full-Stack Engineering — building 
-          robust predictive models (LightGBM, PyTorch) and deploying them within scalable, 
-          high-performance architectures (Node.js, Flutter, Redis).
+          I am a Computer Science undergraduate with a strong focus on AI, Machine Learning,
+          and modern web technologies. I specialize in building projects that integrate data, algorithms,
+          and intuitive interfaces. Through continuous hands-on development,
+          I strive to deliver innovative solutions and grow as a professional developer.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full pt-12">
           {[
-            { label: "Models Trained", value: "50+" },
-            { label: "Projects Shipped", value: "12" },
-            { label: "Global Rank", value: "Top 5%" }
+            { label: "University", value: "LPU" },
+            { label: "GitHub Projects", value: "16+" },
+            { label: "Current Focus", value: "AI/ML" }
           ].map((stat, i) => (
             <div key={i} className="p-8 rounded-2xl bg-card-bg border border-card-border backdrop-blur-md flex flex-col items-center justify-center space-y-3 hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] transition-all duration-300">
               <span className="text-5xl font-bold text-transparent bg-clip-text bg-accent-gradient">{stat.value}</span>

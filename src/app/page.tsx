@@ -3,7 +3,7 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
-import Achievements from "@/components/Achievements";
+import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
       <Skills />
       <Projects />
       <Experience />
-      <Achievements />
+      <Certificates />
       <Contact />
     </main>
   );

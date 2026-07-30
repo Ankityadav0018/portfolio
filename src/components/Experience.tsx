@@ -4,16 +4,22 @@ import { motion, useInView } from 'framer-motion';
 
 const experiences = [
   {
-    title: "AI & ML Intern",
-    company: "Infosys",
-    date: "2023 - Present",
-    desc: "Developed a predictive maintenance system for industrial plants using PyTorch. Streamlined IoT data pipelines for real-time anomaly detection, improving plant uptime by 12%."
+    title: "3rd Year — Building & Shipping",
+    company: "LPU",
+    date: "2025 - Present",
+    desc: "Diving deep into AI/ML and full-stack development. Built RAG-based chatbots, GPT-2 fine-tuning, MLflow pipelines, and production-ready web apps."
   },
   {
-    title: "Full-Stack Developer",
-    company: "Freelance",
-    date: "2022 - 2023",
-    desc: "Architected and deployed scalable web applications using Next.js and Node.js. Integrated complex database schemas and authentication flows for diverse client needs."
+    title: "2nd Year — Leveling Up",
+    company: "LPU",
+    date: "2024 - 2025",
+    desc: "Built multiple projects from scratch — room booking systems, campus management with face recognition, mental health prediction apps."
+  },
+  {
+    title: "1st Year — The Beginning",
+    company: "LPU",
+    date: "2023 - 2024",
+    desc: "Started coding with HTML, CSS, and JavaScript. Built initial web projects, discovered Python, and developed a deep interest in programming."
   }
 ];
 
