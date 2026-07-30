@@ -28,7 +28,7 @@ export default function Experience() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-32 px-6 md:px-24 bg-navy-900 relative">
+    <section id="experience" className="py-32 px-6 md:px-24 bg-navy-900 relative">
       <div className="max-w-4xl mx-auto relative z-10" ref={ref}>
         <h2 className="text-4xl md:text-5xl font-bold text-text-heading mb-16">
           Career <span className="text-violet-500">Trajectory</span>

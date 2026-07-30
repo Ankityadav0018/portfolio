@@ -26,7 +26,7 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-32 px-6 md:px-24 bg-navy-900 min-h-screen flex flex-col md:flex-row items-center justify-between gap-12 overflow-hidden">
+    <section id="skills" className="relative py-32 px-6 md:px-24 bg-navy-900 min-h-screen flex flex-col md:flex-row items-center justify-between gap-12 overflow-hidden">
       <div className="w-full md:w-1/2 relative z-20" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}

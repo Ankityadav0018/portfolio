@@ -10,7 +10,7 @@ const AbstractDataSphere = dynamic(() => import('./3d/AbstractDataSphere'), { ss
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen flex items-center justify-between px-6 md:px-24 overflow-hidden bg-navy-900">
+    <section id="hero" className="relative w-full h-screen flex items-center justify-between px-6 md:px-24 overflow-hidden bg-navy-900">
       {/* 3D Background */}
       <div className="absolute inset-0 z-0 opacity-40">
         <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>
@@ -64,15 +64,15 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="flex flex-col sm:flex-row gap-4 pt-4"
         >
-          <button className="group relative px-8 py-4 bg-violet-600 hover:bg-violet-500 text-white font-medium rounded-lg overflow-hidden transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)]">
+          <a href="#projects" className="group relative px-8 py-4 bg-violet-600 hover:bg-violet-500 text-white font-medium rounded-lg overflow-hidden transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)]">
             <span className="relative z-10 flex items-center gap-2">
               View Work <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </span>
-          </button>
+          </a>
           
-          <button className="group px-8 py-4 bg-card-bg border border-card-border hover:border-violet-500/50 hover:bg-violet-500/10 text-text-heading font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-md">
+          <a href="/resume/GeneralCVAnkit.pdf" download="Ankit_Yadav_Resume.pdf" target="_blank" rel="noopener noreferrer" className="group px-8 py-4 bg-card-bg border border-card-border hover:border-violet-500/50 hover:bg-violet-500/10 text-text-heading font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-md">
             Download Resume <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>

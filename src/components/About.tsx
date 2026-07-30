@@ -13,7 +13,7 @@ export default function About() {
   const y = useTransform(scrollYProgress, [0, 0.3, 0.6, 1], [100, 0, 0, -100]);
 
   return (
-    <section ref={ref} className="relative py-32 px-6 md:px-24 bg-navy-800 border-y border-white/5">
+    <section id="about" ref={ref} className="relative py-32 px-6 md:px-24 bg-navy-800 border-y border-white/5">
       {/* Decorative scatter dots/grid */}
       <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #6366F1 1px, transparent 0)', backgroundSize: '40px 40px' }} />
       

@@ -54,7 +54,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="relative py-32 px-6 md:px-24 bg-navy-800 border-y border-white/5">
+    <section id="projects" className="relative py-32 px-6 md:px-24 bg-navy-800 border-y border-white/5">
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 100% 100%, #22D3EE 10%, transparent 50%)' }} />
       
       <div className="relative z-10 max-w-7xl mx-auto">

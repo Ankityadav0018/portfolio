@@ -90,7 +90,7 @@ const certificates: Certificate[] = [
 
 export default function Certificates() {
   return (
-    <section className="py-32 px-6 md:px-24 bg-navy-800 border-y border-white/5 relative overflow-hidden">
+    <section id="certificates" className="py-32 px-6 md:px-24 bg-navy-800 border-y border-white/5 relative overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 0% 100%, #6366F1 0%, transparent 40%)' }} />
       
       <div className="relative z-10 max-w-7xl mx-auto">

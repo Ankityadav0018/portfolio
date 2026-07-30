@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import CustomCursor from "@/components/ui/CustomCursor";
 import PageLoader from "@/components/ui/PageLoader";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <PageLoader />
         <CustomCursor />
         <SmoothScroll>
+          <Navbar />
           {children}
         </SmoothScroll>
       </body>

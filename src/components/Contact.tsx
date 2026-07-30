@@ -13,7 +13,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative py-32 px-6 md:px-24 bg-navy-900 overflow-hidden flex flex-col items-center">
+    <section id="contact" className="relative py-32 px-6 md:px-24 bg-navy-900 overflow-hidden flex flex-col items-center">
       {/* 3D Background */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
         <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>
@@ -30,24 +30,33 @@ export default function Contact() {
           Open to roles in AI/ML Engineering and Full-Stack Development.
         </p>
         
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={(e) => {
+          e.preventDefault();
+          const target = e.target as HTMLFormElement;
+          const name = (target.elements[0] as HTMLInputElement).value;
+          const body = (target.elements[2] as HTMLTextAreaElement).value;
+          window.location.href = `mailto:ankitrao0018@gmail.com?subject=Portfolio Contact from ${name}&body=${body}`;
+        }}>
           <input 
             type="text" 
             placeholder="Name" 
+            required
             className="w-full bg-navy-800 border border-white/10 rounded-lg px-4 py-3 text-text-heading placeholder-text-body focus:outline-none focus:border-cyan-400 transition-colors"
           />
           <input 
             type="email" 
             placeholder="Email" 
+            required
             className="w-full bg-navy-800 border border-white/10 rounded-lg px-4 py-3 text-text-heading placeholder-text-body focus:outline-none focus:border-cyan-400 transition-colors"
           />
           <textarea 
             placeholder="Message Payload" 
             rows={4}
+            required
             className="w-full bg-navy-800 border border-white/10 rounded-lg px-4 py-3 text-text-heading placeholder-text-body focus:outline-none focus:border-cyan-400 transition-colors resize-none"
           />
           <button 
-            type="button" 
+            type="submit" 
             className="w-full py-4 bg-violet-600 hover:bg-violet-500 text-white font-medium rounded-lg transition-all duration-300 shadow-[0_0_15px_rgba(99,102,241,0.4)] hover:shadow-[0_0_25px_rgba(99,102,241,0.6)]"
           >
             Transmit Data
@@ -55,13 +64,13 @@ export default function Contact() {
         </form>
 
         <div className="flex justify-center gap-6 mt-12">
-          <a href="#" className="p-3 rounded-full bg-navy-800 border border-white/5 text-text-body hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300">
+          <a href="https://github.com/Ankityadav0018" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-navy-800 border border-white/5 text-text-body hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300">
             <FaGithub size={24} />
           </a>
-          <a href="#" className="p-3 rounded-full bg-navy-800 border border-white/5 text-text-body hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300">
+          <a href="https://www.linkedin.com/in/ankit-yadav01/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-navy-800 border border-white/5 text-text-body hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300">
             <FaLinkedin size={24} />
           </a>
-          <a href="#" className="p-3 rounded-full bg-navy-800 border border-white/5 text-text-body hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300">
+          <a href="mailto:ankitrao0018@gmail.com" className="p-3 rounded-full bg-navy-800 border border-white/5 text-text-body hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300">
             <Mail size={24} />
           </a>
         </div>
